@@ -5,6 +5,7 @@ editor: visual
 echo: false
 fig.width: 6.5
 fig.height: 8
+bibliography: references.bib
 ---
 
 ```{r}
@@ -19,3 +20,5 @@ starData <- import(here("data", "star.csv"))
 Here, I am including reference to several things, such as the R package by @R and the tidyverse package [@tidyverse]. Also, @hitop and other works in that vein [@krueger2018progress; @krueger1999structure; @miller2001structural]
 
 \newpage
+
+# References

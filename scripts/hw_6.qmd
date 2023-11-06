@@ -13,11 +13,31 @@ library(rio)
 suppressPackageStartupMessages(library(here))
 
 ```
+
 ```{r}
 starData <- import(here("data", "star.csv"))
 ```
 
 Here, I am including reference to several things, such as the R package by @R and the tidyverse package [@tidyverse]. Also, @hitop and other works in that vein [@krueger2018progress; @krueger1999structure; @miller2001structural]
+
+```{r}
+library(knitr)
+library(tidyverse)
+
+starData %>%
+  group_by(sex, frl) %>%
+  summarize(
+    across(
+      c(tmathss, treadss),
+      list(mean = ~mean(., na.rm = TRUE), sd = ~sd(., na.rm = TRUE)))) %>%
+  kable(col.names = c("sex", "frl", "math_mean", "math_sd", "rdg_mean", "rdg_sd"),
+        digits = 2)
+
+```
+
+The table above displays mean and standard deviation test scores for math and reading as summarized by sex and free lunch status. All combinations of sex and free lunch status are shown.
+
+The table demonstrates an effect for both sex and free lunch status. On average, girls score higher in math and reading than boys. Additionally, children that do not receive free lunch score higher in math and reading than children that do.
 
 \newpage
 

@@ -39,6 +39,24 @@ The table above displays mean and standard deviation test scores for math and re
 
 The table demonstrates an effect for both sex and free lunch status. On average, girls score higher in math and reading than boys. Additionally, children that do not receive free lunch score higher in math and reading than children that do.
 
+Below is a plot showing the relationship between teacher experience and student math scores. There seems to be a positive linear relationship between teacher experience and student performance on math tests, such that the more experienced the teacher, the better students do. This relationship seems to be similar for both free/reduced lunch students as well as paid lunch students, however, on average, paid lunch students perform better on math tests.
+
+```{r}
+library(ggplot2)
+
+ggplt <- ggplot(starData, aes( y= tmathss, x= totexp)) +
+  geom_point(color="gray")+
+  theme_minimal() + 
+  labs(x="Teacher Experience (years)", y= "Total Math Scale Score", title= "Relation between teacher experience and math scores", subtitle= "Separate regression lines displaced for free/reduced price lunch status")
+  
+
+ggplt+geom_smooth(method=lm,fullrange=TRUE, aes(color=frl))  + 
+  theme(legend.position = "bottom",legend.direction = "horizontal") +
+  scale_color_discrete(name = "Lunch status", labels = c("Paid meals", "Free/reduced price meals"))
+
+
+```
+
 \newpage
 
 # References
